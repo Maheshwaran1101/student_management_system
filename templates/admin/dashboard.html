@@ -1,14 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Dashboard</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Admin Dashboard</h1>
+{% block title %}
+Admin Dashboard
+{% endblock %}
 
-<p>Welcome Admin</p>
-<a href="{% url 'logout' %}">Logout</a>
+{% block content %}
 
-</body>
-</html>
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card bg-primary text-white mb-3">
+
+            <div class="card-body">
+
+                <h3>{{ total_students }}</h3>
+
+                <h5>Total Students</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card bg-success text-white mb-3">
+
+            <div class="card-body">
+
+                <h3>{{ total_teachers }}</h3>
+
+                <h5>Total Teachers</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="mt-4">
+
+    <a href="/students/" class="btn btn-primary">
+        Manage Students
+    </a>
+
+    <a href="#" class="btn btn-success">
+        Manage Teachers
+    </a>
+
+    <a href="#" class="btn btn-warning">
+        Results
+    </a>
+
+    <a href="#" class="btn btn-info">
+        Notes
+    </a>
+
+</div>
+
+{% endblock %}

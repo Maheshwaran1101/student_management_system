@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 
+from students.models import Student
+from teachers.models import Teacher
+
 # Create your views here.
 def home(request):
     return render(request, "home.html")
@@ -30,7 +33,16 @@ def login_page(request):
     return render(request, "login.html")
 
 def admin_dashboard(request):
-    return render(render, "admin/dashboard.html")
+
+    total_students = Student.objects.count()
+    total_teachers = Teacher.objects.count()
+
+    context = {
+        "total_students": total_students,
+        "total_teachers": total_teachers,
+    }
+
+    return render(request, "admin/dashboard.html", context)
 
 def teacher_dashboard(request):
     return render(request, "teacher/dashboard.html")
