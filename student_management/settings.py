@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'results',
     'notes',
     'notifications',
+    'courses',
 ]
 
 MIDDLEWARE = [

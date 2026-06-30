@@ -1,12 +1,20 @@
 from django.db import models
 
+from courses.models import Course
+
 class Student(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     roll_number = models.CharField(max_length=20, unique=True)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
-    department = models.CharField(max_length=100)
+    # department = models.CharField(max_length=100)
+    
+    course = models.ForeignKey(
+    Course,
+    on_delete=models.CASCADE
+)
+    
     year = models.IntegerField()
     address = models.TextField()
 
