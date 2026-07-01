@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Course
+from .forms import CourseForm
 
 
 def course_list(request):
@@ -8,41 +9,36 @@ def course_list(request):
 
 
 def add_course(request):
-
     if request.method == "POST":
+        form = CourseForm(request.POST)
 
-        Course.objects.create(
-            course_name=request.POST["course_name"],
-            course_code=request.POST["course_code"],
-            duration=request.POST["duration"],
-        )
+        if form.is_valid():
+            form.save()
+            return redirect("course_list")
 
-        return redirect("course_list")
+    else:
+        form = CourseForm()
 
-    return render(request, "courses/add_course.html")
+    return render(request, "courses/add_course.html", {"form": form})
 
 
 def edit_course(request, id):
-
-    course = Course.objects.get(id=id)
+    course = get_object_or_404(Course, id=id)
 
     if request.method == "POST":
+        form = CourseForm(request.POST, instance=course)
 
-        course.course_name = request.POST["course_name"]
-        course.course_code = request.POST["course_code"]
-        course.duration = request.POST["duration"]
+        if form.is_valid():
+            form.save()
+            return redirect("course_list")
 
-        course.save()
+    else:
+        form = CourseForm(instance=course)
 
-        return redirect("course_list")
-
-    return render(request, "courses/edit_course.html", {"course": course})
+    return render(request, "courses/edit_course.html", {"form": form})
 
 
 def delete_course(request, id):
-
-    course = Course.objects.get(id=id)
-
+    course = get_object_or_404(Course, id=id)
     course.delete()
-
     return redirect("course_list")
