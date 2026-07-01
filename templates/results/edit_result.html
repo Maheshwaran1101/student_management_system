@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Edit Course
+Edit Result
 {% endblock %}
 
 {% block content %}
 
-<h2>Edit Course</h2>
+<h2>Edit Result</h2>
 
 <form method="POST">
 
@@ -15,10 +15,10 @@ Edit Course
     {{ form.as_p }}
 
     <button class="btn btn-primary">
-        Update Course
+        Update Result
     </button>
 
-    <a href="{% url 'course_list' %}" class="btn btn-secondary">
+    <a href="{% url 'result_list' %}" class="btn btn-secondary">
         Cancel
     </a>
 
