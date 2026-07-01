@@ -43,9 +43,21 @@ value="{{ student.phone }}" class="form-control">
 </div>
 
 <div class="mb-3">
-<label>Department</label>
-<input type="text" name="department"
-value="{{ student.department }}" class="form-control">
+    <label>Course</label>
+
+    <select name="course" class="form-control">
+
+        {% for course in courses %}
+
+            <option value="{{ course.id }}"
+            {% if student.course.id == course.id %}selected{% endif %}>
+                {{ course.course_name }}
+            </option>
+
+        {% endfor %}
+
+    </select>
+
 </div>
 
 <div class="mb-3">

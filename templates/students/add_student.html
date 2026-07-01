@@ -38,8 +38,20 @@ Add Student
 </div>
 
 <div class="mb-3">
-<label>Department</label>
-<input type="text" name="department" class="form-control">
+    <label>Course</label>
+
+    <select name="course" class="form-control">
+
+        {% for course in courses %}
+
+            <option value="{{ course.id }}">
+                {{ course.course_name }}
+            </option>
+
+        {% endfor %}
+
+    </select>
+
 </div>
 
 <div class="mb-3">
